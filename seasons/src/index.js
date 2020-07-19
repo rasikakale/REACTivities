@@ -1,6 +1,8 @@
+import './index.css';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import SeasonDisplay from './SeasonDisplay';
+import Spinner from './Spinner';
 
 // get built in functionality from React.Component to the class App to use 
 class App extends React.Component {
@@ -17,7 +19,7 @@ class App extends React.Component {
     componentDidMount() {
         window.navigator.geolocation.getCurrentPosition(
             // success callback function
-                // call setState to update state object
+                // call setState to update state object or assign a property 
                 // do NOT do this.state.lat = position.coords.latitude
             (position) => this.setState({lat: position.coords.latitude}),
                 
@@ -27,8 +29,7 @@ class App extends React.Component {
         );
     }
 
-    // React says we have to define render!
-    render() {
+    renderContent() {
         //this is conditional rendering
         if (this.state.errorMessage && !this.state.lat) {
             return <div>Error: {this.state.errorMessage} </div>
@@ -37,7 +38,17 @@ class App extends React.Component {
             return <SeasonDisplay lat={this.state.lat}/>
         }
 
-        return <div>Loading...</div>
+        return <Spinner message="Please accept location request"/>;
+
+    }
+
+    // React says we have to define render!
+    render() {
+        return (
+            <div className="border-red">
+                {this.renderContent()}
+            </div>
+        );
     }
 }
 
