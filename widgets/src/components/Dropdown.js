@@ -1,14 +1,28 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 
 
-const Dropdown = ({options, selected, onSelectedChange}) => {
+const Dropdown = ({label, options, selected, onSelectedChange}) => {
     const [open, setOpen] = useState(false);
+    const ref = useRef();
 
     useEffect(() => {
-        document.body.addEventListener('click', (event) => {
-            console.log(event.target);
+        const onBodyClick = (event) => {
+            // if element clicked on is inside dropdown component
+            // .contains method belongs to all DOM methods
+            if(ref.current.contains(event.target)) {
+                return;
+            }
+            // console.log(event.target);
+            // if not, then close the dropdown
             setOpen(false);
-        });
+        };
+
+        document.body.addEventListener('click', onBodyClick);
+
+        //cleanup function if we stop showing dropdown component from screen
+        return () => {
+            document.body.removeEventListener('click', onBodyClick);
+        };
 
     }, []);
 
@@ -32,10 +46,12 @@ const Dropdown = ({options, selected, onSelectedChange}) => {
             </div>
         );
     });
+
+    // console.log(ref.current);
     return (
-        <div className="ui form">
+        <div ref={ref} className="ui form">
             <div className="field">
-                <label className="label">Select a Color</label>
+                <label className="label">{label}</label>
                 <div 
                     onClick={() => setOpen(!open)} 
                     className={`ui selection dropdown ${open ? 'visible active' : ''}`}
