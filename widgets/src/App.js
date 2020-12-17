@@ -4,6 +4,7 @@ import Search from './components/Search';
 import Dropdown from './components/Dropdown';
 import Translate from './components/Translate';
 import Route from './components/Route';
+import Header from './components/Header';
 
 const items = [
     {
@@ -43,6 +44,7 @@ export default() => {
     // const [showDropDown, setShowDropDown] = useState(true);
     return (
         <div>
+            <Header />
             {/* <button onClick={() => setShowDropDown(!showDropDown)}>Toggle Dropdown</button> */}
             
             {/* {showDropDown ?
