@@ -1,20 +1,29 @@
 import React, {useState, useEffect} from 'react';
 import SearchBar from './SearchBar';
-import youtube from '../apis/youtube';
+// import youtube from '../apis/youtube';
 import VideoList from './VideoList';
 import VideoDetail from './VideoDetail';
+import useVideos from '../hooks/useVideos';
 
 const App = () => {
     
-    const[selectedVideo, setSelectedVideo] = useState(null);
+    const [selectedVideo, setSelectedVideo] = useState(null);
 
-    //setSelectedVideo(response.data.items[0]);
-   
- 
+    // custom hook inputs are what is returned from the hook
+    const [videos, search] = useVideos('buildings');
+
+    // when we get a new list of videos or when it changes, we will select the very first video in that list
+    useEffect(() => {
+        setSelectedVideo(videos[0]);
+    }, [videos])
+
     
+      
     return (
         <div className="ui container">
-        <SearchBar onFormSubmit={onTermSubmit}/>
+
+        {/* //calls search function in custom hook useVideos */}
+        <SearchBar onFormSubmit={search}/> 
         <div className="ui grid">
             <div className="ui row">
                 <div className="eleven wide column"> 
