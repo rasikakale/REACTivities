@@ -1,0 +1,37 @@
+{
+  "streams": [
+    {
+      "title": "my stream",
+      "description": "this is a grape",
+      "id": 1
+    },
+    {
+      "title": "other stream",
+      "description": "here's some stream",
+      "id": 2
+    },
+    {
+      "title": "i created this stream",
+      "description": "This change was made by a patch request",
+      "userId": "118170243903383961662",
+      "id": 4
+    },
+    {
+      "title": "Unexpected Behavior ",
+      "description": "didn't expect that",
+      "userId": "118170243903383961662",
+      "id": 5
+    },
+    {
+      "title": "Programmatic navigation",
+      "description": "You should not see this on the form page",
+      "userId": "118170243903383961662",
+      "id": 6
+    },
+    {
+      "title": "Me Streaming component Reuse",
+      "description": "This stream is about refactoring!!",
+      "id": 7
+    }
+  ]
+}
